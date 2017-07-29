@@ -2,7 +2,7 @@
 
 ## Summary
 
-Quick reference for beginners - preparing data for analysis using Python 3 and Jupyter Notebooks.
+Quick reference - preparing data for analysis using Python 3 and Jupyter Notebooks.
 
 Version 1.0
 
@@ -21,38 +21,38 @@ Feedback welcome - elisabeth.reitmayr@gmail.com
   * [Awesome Pandas blog](https://chrisalbon.com/) 
 
 # Table of contents
-   * Import libraries
-   * Import data
-      * Read from csv
-      * Connect to a database
-      * Use a date picker to pull data from database
-  * Styling
-     * Hide warnings
-     * Toggle code
-     * Table of contents
- * * Metadata and data types
-    * Metadata
-    * Modify data types
-* Duplicates
-    * Find duplicates
-    * Remove duplicates
-* Dataframe manipublition
-    * Columns and rows
-    * Aggregation and sorting
-    * Combine dataframes
-* Outlier detection
-    * Tukey’s test for extreme values
-    * Kernel density estimation
-* Variable generation and manipulation
-    * Generate new variables
-    * Bucket variables
-    * Encode categorical variables
-    * Generate dummy variables
-* Prepare data for modeling
-    * Draw samples and split dataset
-    * Reshape data for modeling
+   * [Import libraries](#H1)
+   * [Import data](#H2)
+      * [Read from csv](#H2a)
+      * [Connect to a database](#H2b)
+      * [Use a date picker to pull data from database](äH2c)
+  * [Styling](#H3)
+     * [Hide warnings](#H3a)
+     * [Toggle code](#H3b)
+     * [Table of contents](#H3c)
+  * [Metadata and data types](#H4)
+     * [Metadata](#H4a)
+     * [Modify data types](#H4b)
+  * [Duplicates](#H5)
+     * [Find duplicates](#H5a)
+     * [Remove duplicates](#H5b)
+  * [Dataframe manipublition](#H6)
+     * [Columns and rows](#H6a)
+     * [Aggregation and sorting](#H6b)
+     * [Combine dataframes](#H6c)
+  * [Outlier detection](#H7)
+     * [Tukey’s test for extreme values](#H7a)
+     * [Kernel density estimation](#H7b)
+  * [Variable generation and manipulation](#H8)
+     * [Generate new variables](#H8a)
+     * [Bucket variables](#H8b)
+     * [Encode categorical variables](#H8c)
+     * [Generate dummy variables](#H8d)
+  * [Prepare data for modeling](#H9)
+     * [Draw samples and split dataset](#H9a)
+     * [Reshape data for modeling](#H9b)
 
-
+<a name="H1"></a>
 ## Import libraries
 
 ```
@@ -62,8 +62,9 @@ import psycopg2 as ps
 from IPython.display import HTML
 %matplotlib inline # show plots inline in Jupyter Notebook
 ```
-
+<a name="H2"></a>
 ## Import data
+<a name="H2a"></a>
 ### Read from csv
 
 ```
@@ -73,6 +74,7 @@ len(data) # N rows imported (add for future reference)
 
 Do not forget to define encoding as this might cause issues. If you store the csv file in the same folder as the Notebook, it is sufficient to specify the file name.
 
+<a name="H2b"></a>
 ### Connect to a database
 
 ```
@@ -89,16 +91,17 @@ len(data) # Nrows imported, DATE (add for future reference)
 # Close connection
 cur.close()
 
-# Parse the tables into a Pandas dataframe
-data = pd.DataFrame(list(data), columns=('COL_NAME1', 'COL_NAME2', 'COL_NAME3'))
+# Parse the tables into a Pandas dataframe (specify column names)
+data = pd.DataFrame(list(data), columns=('COL1', 'COL2', 'CO3'))
 data.head()
 ```
 
-Please note: You might want to consider security precautions when pulling your data directly from your database (SSH tunneling etc.)
+Please note: You might want to consider security precautions when pulling your data directly from your database (SSH tunneling etc.).
 
+<a name="H2c"></a>
 ### Use a date picker to pull data from database
 
-Download [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) and copy the folder "ipywidgets" into the directory of your notebook and execute the following code snippet from you notebook.
+Download [ipywidgets](https://github.com/jupyter-widgets/ipywidgets), copy the folder "ipywidgets" into the directory of your notebook and execute the following code snippet from you notebook.
 
 
 ```
@@ -141,15 +144,16 @@ def ask_datavault():
     print(data)
 ```
 
-
+<a name="H3"></a>
 ## Styling
-
+<a name="H3a"></a>
 ### Hide warnings
 
 If you want to hide warning messages, add `warnings.filterwarnings('ignore')` at the top of your notebook (be aware you will not be warned if you use deprecated methods etc. in case you do this).
 
+<a name="H3b"></a>
 ### Toggle code
-Download [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) and copy the folder "ipywidgts" into the directory from which you start your notebook.
+Download [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) and copy the folder "ipywidgts" into the directory from which you start your notebook. Then, execute the following code snippet from a notebook cell.
 
 
 ```
@@ -169,20 +173,21 @@ The raw code for this IPython notebook is by default hidden for easier reading.
 To toggle on/off the raw code, click <a href="javascript:code_toggle()">here</a>.''')
 ```
 
-
+<a name="H3c"></a>
 ### Table of contents
 
-For ipynb files, use the table of contents options (button in your toolbar, cannot be exported to HTML etc. per default)
+For ipynb files, you can use the table of contents options (button in your toolbar, cannot be exported to HTML etc. per default).
 
-You can use an extension to display the auto-generated table of contents inside your notebook - read more [here](http://www.sas-programming.com/2016/08/add-table-of-contents-to-your-jupyter.html).
+You can use an extension to display the auto-generated table of contents "inside" your notebook and to make it exportable - read more [here](http://www.sas-programming.com/2016/08/add-table-of-contents-to-your-jupyter.html).
 
 Follow the instructions to add your table of contents in a cell. If the table of contents does not show up, click on the refresh symbol in the "Contents" side menu in your notebook.
 
+<a name="H4"></a>
 ## Metadata and data types
-
+<a name="H4a"></a>
 ### Metadata
 
-**Runtime info for single cells:** `%%time` magic gets you the time spent on cell execution
+**Runtime info for single cells:** `%%time` magic gets you the time spent on cell execution.
 
 **Info on data types:** 
 
@@ -203,8 +208,9 @@ for i in range(0, 3):
 		df.ix[:, i].fillna(value = 0, inplace = True)
 ```
 
-Specify the range of columns - here: columns 1-4 
+Specify the range of columns - here: columns 1-4.
 
+<a name="H4b"></a>
 ### Modify data types
 
 **Cast to other data types:**
@@ -213,8 +219,7 @@ Specify the range of columns - here: columns 1-4
 for i in range(1, 2):   
 	    df.iloc[:, [i]] = df.iloc[:, [i]].apply(np.int64) 
 ```
-Specify the range of columns - here: columns 2-3
-Specify data type (can also be String, etc.)
+Specify the range of columns (here: columns 2-3) and the data type (can also be String, etc.).
 
 **Convert a microseconds integer timestamp to datetime:**
 
@@ -222,8 +227,9 @@ Specify data type (can also be String, etc.)
 df.my_ts = pd.to_datetime(df.my_ts)
 ```
 
+<a name="H5"></a>
 ## Duplicates
-
+<a name="H5a"></a>
 ### Find duplicates
 
 **Count unique values of one column:**
@@ -240,6 +246,7 @@ pd.concat(i for _, i in df.groupby('my_user_id') if len(i) > 1)
 
 In case you want to show duplicates for a combination of columns, replace 'my_user_id' by the list of columns to be considered (e.g. ['my_user_id', 'my_country']).
 
+<a name="H5b"></a>
 ### Remove duplicates
 
 **Remove duplicates:**
@@ -248,10 +255,11 @@ In case you want to show duplicates for a combination of columns, replace 'my_us
 df = df.drop_duplicates(subset='my_user_id', keep=False)
 ```  
 
-Change 'keep' parameter to 'first'/'last' if applicable
+Change 'keep' parameter to 'first'/'last' if applicable.
 
+<a name="H6"></a>
 ## Dataframe manipulation
-
+<a name="H6a"></a>
 ### Columns and rows
 
 **Drop one or more  column(s):**
@@ -260,11 +268,11 @@ Change 'keep' parameter to 'first'/'last' if applicable
 df = df.drop(['col1', 'col2'], axis=1)
 ```
 
-The axis argument specifies that you want to drop columns, not rows
+The axis argument specifies that you want to drop columns, not rows.
 
 **Delete a column:** 
 ```
-del df['COL_NAME']
+del df['COL1']
 ```
 
 **Drop one or more rows:** 
@@ -273,7 +281,7 @@ del df['COL_NAME']
 df = df.drop(['Index1', 'Index2'])
 ```
 
-Specify the index/row numbers to drop
+Specify the index/row numbers to drop.
 
 **Remove all rows that do not fulfil a condition:**
 
@@ -300,7 +308,7 @@ df = df.rename(columns = {'OLDNAME': 'NEWNAME'})
 **Rename all columns:** 
 
 ```
-df.columns = ['COL_NAME1', 'COL_NAME2', 'COL_NAME3']
+df.columns = ['COL1', 'COL2', 'COL3']
 ```
 
 **Change the order of columns:**
@@ -309,7 +317,7 @@ df.columns = ['COL_NAME1', 'COL_NAME2', 'COL_NAME3']
 # Show the list of columns to then copy and rearrange
 cols = list(df.columns.values)
 # Rearrange
-df = df[['COL_NAME2', 'COL_NAME3', 'COL_NAME1']]
+df = df[['COL2', 'COL3', 'COL1']]
 ```
 
 **Transpose a dataframe:**
@@ -318,7 +326,7 @@ df = df[['COL_NAME2', 'COL_NAME3', 'COL_NAME1']]
 data = data.transpose(as_index = False)
 ```
 
-Chose whether to transpose the columns as index or not
+Chose whether to transpose the columns as index or not.
 
 **Pivot a dataframe:**
 
@@ -328,6 +336,7 @@ df2 = df.pivot_table('CATEGORY_COUNT', 'INDEX_VARIABLE', 'CATEGORY')
 
 The dataframe will be reshaped such that the values of a categorical variable become columns. 
 
+<a name="H6b"></a>
 ### Aggregation and sorting
 
 **Aggregate by grouping (equivalent to SQL "GROUP BY"):**
@@ -355,15 +364,17 @@ helplist = ['COL1', 'COL2', 'COL3']
 df['total'] = df[helplist].sum(axis = 1)
 ``` 
 
-In this example, a new column called "total" that contains the sum over COL1-3 for each row will be inserted.
+In this example, a new column called "total" that contains the sum over COL1-3 for each row will be added to the dataframe.
 
+<a name="H6c"></a>
 ### Combine dataframes
 
 **Join dataframes (equivalent to SQL JOIN operations):**
 
 ```
-df = pd.merge(df1, df2, how = 'left', left_on = ['my_user_id'], right_index = True) # Change join type and "on" argument to the applicable variables or to the index
+df = pd.merge(df1, df2, how = 'left', left_on = ['my_user_id'], right_index = True)
 ```
+Change join type and "on" argument to the applicable variables or to the index.
 
 **Add rows of another dataframe to your dataframe:**
 
@@ -371,11 +382,12 @@ df = pd.merge(df1, df2, how = 'left', left_on = ['my_user_id'], right_index = Tr
 df = pd.concat([df1, df2], axis = 0)
 ```
 
-
+<a name="H7"></a>
 ## Outlier detection
 
 [Source](https://github.com/aprilypchen/depy2016/blob/master/DePy_Talk.ipynb)
 
+<a name="H7a"></a>
 ### Tukey's test for extreme values
 
 ```
@@ -395,10 +407,10 @@ for x in range(1, 7): # Modify to select numeric columns
     tukey_indices, tukey_values = find_outliers_tukey(data.ix[:, x])
     print(list(data[[x]]), np.sort(tukey_values))
 ```
-
+<a name="H7b"></a>
 ### Kernel density estimation 
 
-Non-parametric, captures also bimodal distributions
+Non-parametric, captures also bimodal distributions.
 
 ```
 from statsmodels.nonparametric.kde import KDEUnivariate
@@ -422,8 +434,9 @@ for x in range(1, 7): # Modify to select numeric columns
     print(list(data[[x]]), np.sort(kde_values))
 ```
 
+<a name="H8"></a>
 ## Variable generation and manipulation
-
+<a name="H8a"></a>
 ### Generate new variables
 
 **Add a column to a dataframe:**
@@ -438,6 +451,7 @@ Specify the values to be inserted - can be done through aritmethic operations on
 df['NEWCOL'] = df.COL1/df.COL2
 ```
 
+<a name="H8b"></a>
 ### Bucket variables
 
 **Bucket several categorical values into one value:**
@@ -471,7 +485,7 @@ print(df['COUNTRY'].value_counts().sort_values(ascending=False))
 
 ```
 df['var'] = 0
-var = pd.qcut(x = COL1, q = 3, labels = ["good", "medium", "bad"])
+var = pd.qcut(x=COL1, q=3, labels=["good", "medium", "bad"])
 print(df['var'].value_counts().sort_values(ascending=False))
 ```
 Adjust the number of bins (q) and the labels.
@@ -480,18 +494,19 @@ Adjust the number of bins (q) and the labels.
 
 ```
 bins = [0, 20, 40, 60, 80, 100] 
-df.var = pd.cut(x = COL1, bins, labels = ['Very low', 'Low', 'Medium', 'High', 'Very high']) 
+df.var = pd.cut(x=COL1, bins, labels=['Very low', 'Low', 'Medium', 'High', 'Very high']) 
 print(data['var'].value_counts().sort_values(ascending = False))
 ```
 Adjust the bins by specifying the thresholds for the bins 
 (must be one more than the number of categories/labels). Per default, bins include rightmost edge, set argument "right" =False if rightmost edges shall not be included.
 
+<a name="H8c"></a>
 ### Encode categorical variables
 
 **Encode a boolean variable by casting to integer:**
 
 ```
-df['BOOL'] = (df.COL1 == "ABC").astype(int)
+df['BOOL'] = (df.COL1=="ABC").astype(int)
 dta.head()
 ```
 In this example, COL1 contains string values. BOOL will be 1 if COL1 contains "ABC".
@@ -507,12 +522,13 @@ df['VAR'] = df['VAR'].map(dic)
 
 to be added (OneHotEncoder)
 
+<a name="H8d"></a>
 ### Generate dummy variables
 
 **For a non-binary categorical variable:**
 
 ```
-dummy = pd.get_dummies(dta1['country'], prefix = 'ct').astype(int)
+dummy = pd.get_dummies(dta1['country'], prefix='ct').astype(int)
 dummy.head()
 ```
 
@@ -525,9 +541,9 @@ dummy_vars = ['COL1', 'COL2', 'COL3']
 # Create dummies for all categorical variables
 def dummy_data(df, dummy_vars):
     for x in dummy_vars:
-        dummies = pd.get_dummies(df[x], prefix = x, dummy_na=False)
+        dummies = pd.get_dummies(df[x], prefix=x, dummy_na=False)
         df = df.drop(x, 1)
-        df = pd.concat([df, dummies], axis = 1)
+        df = pd.concat([df, dummies], axis=1)
     return df
 
 df = dummy_df(df, dummy_data)
@@ -545,8 +561,9 @@ df1 = df1[colstokeep].join(dummy_ct.ix[:, 'ct_BR':]).join(dummy_pf.ix[:, 'pf_ama
 df1.head()
 ```
 
+<a name="H9"></a>
 ## Prepare data for modeling
-
+<a name="H9a"></a>
 ### Draw samples and split dataset
 
 **Draw a random sample from a dataset:**
@@ -560,11 +577,12 @@ Axis is per default 0 (rows).
 **Split test and training data:**
 
 ```
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state = 0)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=0)
 ```
 
 Adjust size of test dataset.
 
+<a name="H9b"></a>
 ### Reshape data for modeling
 
 **Define dependent and independent variables:**
@@ -582,7 +600,7 @@ X = array[:,1:5]
 Y = array[:,0]
 ```
 
-Specify columns according to your dataframe, here: X: columns 2-6
+Specify columns according to your dataframe, here: X: columns 2-6.
 
 **Flatten dataframe into a 1-dimensional array:** 
 
