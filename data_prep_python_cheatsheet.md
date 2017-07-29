@@ -59,7 +59,6 @@ Feedback welcome - elisabeth.reitmayr@gmail.com
 import pandas as pd
 import numpy as np
 import psycopg2 as ps
-from sklearn.pipeline import make_pipeline, Pipeline
 from IPython.display import HTML
 %matplotlib inline # show plots inline in Jupyter Notebook
 ```
