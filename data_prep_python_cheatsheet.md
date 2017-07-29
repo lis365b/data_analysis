@@ -33,7 +33,7 @@ Feedback welcome - elisabeth.reitmayr@gmail.com
   * [Metadata and data types](#H4)
      * [Metadata](#H4a)
      * [Modify data types](#H4b)
-  * [Duplicates](#H5)
+  * [Duplicate detection](#H5)
      * [Find duplicates](#H5a)
      * [Remove duplicates](#H5b)
   * [Dataframe manipublition](#H6)
@@ -48,7 +48,7 @@ Feedback welcome - elisabeth.reitmayr@gmail.com
      * [Bucket variables](#H8b)
      * [Encode categorical variables](#H8c)
      * [Generate dummy variables](#H8d)
-  * [Prepare data for modeling](#H9)
+  * [Prepararation of data for modeling](#H9)
      * [Draw samples and split dataset](#H9a)
      * [Reshape data for modeling](#H9b)
 
@@ -228,7 +228,7 @@ df.my_ts = pd.to_datetime(df.my_ts)
 ```
 
 <a name="H5"></a>
-## Duplicates
+## Duplicate detection
 <a name="H5a"></a>
 ### Find duplicates
 
@@ -562,7 +562,7 @@ df1.head()
 ```
 
 <a name="H9"></a>
-## Prepare data for modeling
+## Preparation of data for modeling
 <a name="H9a"></a>
 ### Draw samples and split dataset
 
