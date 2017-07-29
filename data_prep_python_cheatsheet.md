@@ -2,7 +2,7 @@
 
 ## Summary
 
-Hints for preparing data for analysis using Python 3 and Jupyter Notebooks.
+Quick reference for beginners - preparing data for analysis using Python 3 and Jupyter Notebooks.
 
 Version 1.0
 
@@ -22,16 +22,41 @@ Feedback welcome - elisabeth.reitmayr@gmail.com
 
 # Table of contents
    * Import libraries
-   * 
-
-
-
-
+   * Import data
+      * Read from csv
+      * Connect to a database
+      * Use a date picker to pull data from database
+  * Styling
+     * Hide warnings
+     * Toggle code
+     * Table of contents
+ * * Metadata and data types
+    * Metadata
+    * Modify data types
+* Duplicates
+    * Find duplicates
+    * Remove duplicates
+* Dataframe manipublition
+    * Columns and rows
+    * Aggregation and sorting
+    * Combine dataframes
+* Outlier detection
+    * Tukey’s test for extreme values
+    * Kernel density estimation
+* Variable generation and manipulation
+    * Generate new variables
+    * Bucket variables
+    * Encode categorical variables
+    * Generate dummy variables
+* Prepare data for modeling
+    * Draw samples and split dataset
+    * Reshape data for modeling
 
 
 ## Import libraries
 
-```import pandas as pd
+```
+import pandas as pd
 import numpy as np
 import psycopg2 as ps
 from sklearn.pipeline import make_pipeline, Pipeline
@@ -42,14 +67,17 @@ from IPython.display import HTML
 ## Import data
 ### Read from csv
 
-```df = pd.read_csv('PATH', encoding = 'utf-8-sig') # Do not forget to define encoding as this might cause issues
-# If you store the csv file in the same folder as the Notebook, it is sufficient to specify the file name
+```
+df = pd.read_csv('PATH', encoding = 'utf-8-sig') 
 len(data) # N rows imported (add for future reference)
 ```
 
-### Connect to a database and fetch data
+Do not forget to define encoding as this might cause issues. If you store the csv file in the same folder as the Notebook, it is sufficient to specify the file name.
 
-```# Establish database connection
+### Connect to a database
+
+```
+# Establish database connection
 con=ps.connect(dbname= 'DBNAME', host='HOST', 
 port= 'PORT', user= 'USER', password= 'PASSWORD')
 cur = con.cursor()
@@ -74,7 +102,8 @@ Please note: You might want to consider security precautions when pulling your d
 Download [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) and copy the folder "ipywidgets" into the directory of your notebook and execute the following code snippet from you notebook.
 
 
-```from ipywidgets import widgets
+```
+from ipywidgets import widgets
 from IPython.display import display
 from IPython.display import clear_output
 
@@ -124,7 +153,8 @@ If you want to hide warning messages, add `warnings.filterwarnings('ignore')` at
 Download [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) and copy the folder "ipywidgts" into the directory from which you start your notebook.
 
 
-```HTML('''<script>
+```
+HTML('''<script>
 code_show=true; 
 function code_toggle() {
  if (code_show){
@@ -151,11 +181,21 @@ Follow the instructions to add your table of contents in a cell. If the table of
 
 ## Metadata and data types
 
+### Metadata
+
 **Runtime info for single cells:** `%%time` magic gets you the time spent on cell execution
 
-**Info on data types:** `data.info()`  
+**Info on data types:** 
 
-**Summary of missing values:** `data.isnull().sum()` 
+```
+data.info()
+```  
+
+**Summary of missing values:** 
+
+```
+data.isnull().sum()
+``` 
 
 **Replace missings by 0 for numeric variables (if appropriate):**
 
@@ -166,6 +206,7 @@ for i in range(0, 3):
 
 Specify the range of columns - here: columns 1-4 
 
+### Modify data types
 
 **Cast to other data types:**
 
@@ -178,23 +219,35 @@ Specify data type (can also be String, etc.)
 
 **Convert a microseconds integer timestamp to datetime:**
 
-`df.my_ts = pd.to_datetime(df.my_ts)`
+```
+df.my_ts = pd.to_datetime(df.my_ts)
+```
 
 ## Duplicates
 
+### Find duplicates
+
 **Count unique values of one column:**
 
-```dupes = dupes.groupby('my_category').my_user_id.nunique()```
+```
+dupes = dupes.groupby('my_category').my_user_id.nunique()
+```
 
 **Show duplicate values for one column:**
 
-```pd.concat(i for _, i in df.groupby('my_user_id') if len(i) > 1)```
+```
+pd.concat(i for _, i in df.groupby('my_user_id') if len(i) > 1)
+```
 
 In case you want to show duplicates for a combination of columns, replace 'my_user_id' by the list of columns to be considered (e.g. ['my_user_id', 'my_country']).
 
+### Remove duplicates
+
 **Remove duplicates:**
 
-```df = df.drop_duplicates(subset='my_user_id', keep=False)```  
+```
+df = df.drop_duplicates(subset='my_user_id', keep=False)
+```  
 
 Change 'keep' parameter to 'first'/'last' if applicable
 
@@ -204,40 +257,56 @@ Change 'keep' parameter to 'first'/'last' if applicable
 
 **Drop one or more  column(s):**
 
-```df = df.drop(['col1', 'col2'], axis=1)```
+```
+df = df.drop(['col1', 'col2'], axis=1)
+```
 
 The axis argument specifies that you want to drop columns, not rows
 
-**Delete a column:** `del df['COL_NAME']`
+**Delete a column:** 
+```
+del df['COL_NAME']
+```
 
 **Drop one or more rows:** 
 
-```df = df.drop(['Index1', 'Index2'])```
+```
+df = df.drop(['Index1', 'Index2'])
+```
 
 Specify the index/row numbers to drop
 
 **Remove all rows that do not fulfil a condition:**
 
-```df = df[df.COL1 < x]```
+```
+df = df[df.COL1 < x]
+```
 
 x is a numeric threshold in this example, can be modified to any other condition.
 
-**Replace values:** `df[COL1].replace({"VALUE1": 0, "VALUE2": 1})`
+**Replace values:** 
+```
+df[COL1].replace({"VALUE1": 0, "VALUE2": 1})
+```
 
 Specify the values to be replaced in "".
 
 **Rename one column:**
 
-```df = df.rename(columns = {'OLDNAME': 'NEWNAME'})```
+```
+df = df.rename(columns = {'OLDNAME': 'NEWNAME'})
+```
 
 
 **Rename all columns:** 
 
-`df.columns = ['COL_NAME1', 'COL_NAME2', 'COL_NAME3']`
+```
+df.columns = ['COL_NAME1', 'COL_NAME2', 'COL_NAME3']
+```
 
 **Change the order of columns:**
 
-```python 
+```
 # Show the list of columns to then copy and rearrange
 cols = list(df.columns.values)
 # Rearrange
@@ -246,7 +315,9 @@ df = df[['COL_NAME2', 'COL_NAME3', 'COL_NAME1']]
 
 **Transpose a dataframe:**
 
-```data = data.transpose(as_index = False)```
+```
+data = data.transpose(as_index = False)
+```
 
 Chose whether to transpose the columns as index or not
 
@@ -272,7 +343,9 @@ In this example, COL3 will be aggregated by the sum over COL1 and COL2.
 
 **Sort dataframe:**
 
-```df.sort_values(by = ['COL1', 'COL2'], ascending = (0, 1))```
+```
+df.sort_values(by = ['COL1', 'COL2'], ascending = (0, 1))
+```
 
 In this example, COL1 will be sorted descendingly, COL2 will be sorted ascendingly.
 
@@ -295,7 +368,9 @@ df = pd.merge(df1, df2, how = 'left', left_on = ['my_user_id'], right_index = Tr
 
 **Add rows of another dataframe to your dataframe:**
 
- `df = pd.concat([df1, df2], axis = 0)`
+```
+df = pd.concat([df1, df2], axis = 0)
+```
 
 
 ## Outlier detection
@@ -354,11 +429,15 @@ for x in range(1, 7): # Modify to select numeric columns
 
 **Add a column to a dataframe:**
 
-`df['NEWCOL'] = 0`
+```
+df['NEWCOL'] = 0
+```
 
 Specify the values to be inserted - can be done through aritmethic operations on other columns, e.g.:
 
-`df['NEWCOL'] = df.COL1/df.COL2`
+```
+df['NEWCOL'] = df.COL1/df.COL2
+```
 
 ### Bucket variables
 
@@ -411,6 +490,7 @@ Adjust the bins by specifying the thresholds for the bins
 ### Encode categorical variables
 
 **Encode a boolean variable by casting to integer:**
+
 ```
 df['BOOL'] = (df.COL1 == "ABC").astype(int)
 dta.head()
@@ -464,7 +544,6 @@ colstokeep = ['ABC', 'DEF']
 # Join dummies to columns to be kept from original dataframe using an identifier that is not in the list of columns to keep
 df1 = df1[colstokeep].join(dummy_ct.ix[:, 'ct_BR':]).join(dummy_pf.ix[:, 'pf_amazon':])
 df1.head()
-
 ```
 
 ## Prepare data for modeling
@@ -473,7 +552,9 @@ df1.head()
 
 **Draw a random sample from a dataset:**
 
-```data2 = data1.sample(1000)```
+```
+data2 = data1.sample(1000)
+```
 
 Axis is per default 0 (rows).
 
@@ -485,11 +566,15 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_
 
 Adjust size of test dataset.
 
-### Reshape for modeling
+### Reshape data for modeling
 
 **Define dependent and independent variables:**
 
-Reshape dataframe to array (input for Scikit-Learn or Scipy models): `array = df.values`
+Reshape dataframe to array (input for Scikit-Learn or Scipy models): 
+
+```
+array = df.values
+```
 
 Define variables:
 
@@ -500,4 +585,8 @@ Y = array[:,0]
 
 Specify columns according to your dataframe, here: X: columns 2-6
 
-**Flatten dataframe into a 1-dimensional array:** `Y = np.ravel(Y)`
+**Flatten dataframe into a 1-dimensional array:** 
+
+```
+Y = np.ravel(Y)
+```
