@@ -36,7 +36,7 @@ Feedback welcome - elisabeth.reitmayr@gmail.com
   * [Duplicate detection](#H5)
      * [Find duplicates](#H5a)
      * [Remove duplicates](#H5b)
-  * [Dataframe manipublition](#H6)
+  * [Dataframe manipulation](#H6)
      * [Columns and rows](#H6a)
      * [Aggregation and sorting](#H6b)
      * [Combine dataframes](#H6c)
@@ -283,7 +283,7 @@ df = df.drop(['Index1', 'Index2'])
 
 Specify the index/row numbers to drop.
 
-**Remove all rows that do not fulfil a condition:**
+**Remove all rows that do not fulfill a condition:**
 
 ```
 df = df[df.COL1 < x]
@@ -337,7 +337,7 @@ df2 = df.pivot_table('CATEGORY_COUNT', 'INDEX_VARIABLE', 'CATEGORY')
 The dataframe will be reshaped such that the values of a categorical variable become columns. 
 
 <a name="H6b"></a>
-### Aggregation and sorting
+### Aggregation, filtering and sorting
 
 **Aggregate by grouping (equivalent to SQL "GROUP BY"):**
 
@@ -348,6 +348,19 @@ df.groupby(by = ['COL1', 'COL2'], as_index = False, sort = False).COL3.sum()
 Specify aggregation function - can also be values_count() etc.
 
 In this example, COL3 will be aggregated by the sum over COL1 and COL2.
+
+**Filter a dataframe:**
+
+One condition:  
+```
+df[df.COL1 > 1]
+```
+
+
+Multiple conditions:
+```
+df[(df['colCOL11'] >= 1) & (df['COL2'] <=1 )]
+```
 
 **Sort dataframe:**
 
