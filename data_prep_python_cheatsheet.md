@@ -206,7 +206,7 @@ data.isnull().sum()
 
 ```
 for i in range(0, 3): 
-		df.ix[:, i].fillna(value = 0, inplace = True)
+		df.iloc[:,i].fillna(value=0, inplace=True)
 ```
 
 Specify the range of columns - here: columns 1-4.
