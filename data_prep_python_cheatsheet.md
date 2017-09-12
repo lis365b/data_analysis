@@ -25,11 +25,12 @@ Feedback welcome - elisabeth.reitmayr@gmail.com
    * [Import data](#H2)
       * [Read from csv](#H2a)
       * [Connect to a database](#H2b)
-      * [Use a date picker to pull data from database](äH2c)
+      * [Use a date picker to pull data from database](#H2c)
   * [Styling](#H3)
      * [Hide warnings](#H3a)
      * [Toggle code](#H3b)
      * [Table of contents](#H3c)
+     * [Change the maximum column width to be displayed](#H3d)
   * [Metadata and data types](#H4)
      * [Metadata](#H4a)
      * [Modify data types](#H4b)
@@ -182,6 +183,13 @@ For ipynb files, you can use the table of contents options (button in your toolb
 You can use an extension to display the auto-generated table of contents "inside" your notebook and to make it exportable - read more [here](http://www.sas-programming.com/2016/08/add-table-of-contents-to-your-jupyter.html).
 
 Follow the instructions to add your table of contents in a cell. If the table of contents does not show up, click on the refresh symbol in the "Contents" side menu in your notebook.
+
+<a name="H3d"></a>
+### Change the maximum column width to be displayed
+
+```
+pd.set_option('max_colwidth',800)
+```
 
 <a name="H4"></a>
 ## Metadata and data types
