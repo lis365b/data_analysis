@@ -38,7 +38,7 @@ Feedback welcome - elisabeth.reitmayr@gmail.com
      * [Remove duplicates](#H5b)
   * [Dataframe manipulation](#H6)
      * [Columns and rows](#H6a)
-     * [Aggregation and sorting](#H6b)
+     * [Aggregation, filtering and sorting](#H6b)
      * [Combine dataframes](#H6c)
   * [Outlier detection](#H7)
      * [Tukey’s test for extreme values](#H7a)
