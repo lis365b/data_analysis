@@ -149,7 +149,7 @@ def ask_datavault():
 <a name="H3a"></a>
 ### Hide warnings
 
-If you want to hide warning messages, add `warnings.filterwarnings('ignore')` at the top of your notebook (be aware you will not be warned if you use deprecated methods etc. in case you do this).
+If you want to hide warning messages, import warnings and add `warnings.filterwarnings('ignore')` at the top of your notebook (be aware you will not be warned if you use deprecated methods etc. in case you do this).
 
 <a name="H3b"></a>
 ### Toggle code
