@@ -149,7 +149,7 @@ def ask_datavault():
 <a name="H3a"></a>
 ### Hide warnings
 
-If you want to hide warning messages, import warnings and add `warnings.filterwarnings('ignore')` at the top of your notebook (be aware you will not be warned if you use deprecated methods etc. in case you do this).
+If you want to hide warning messages, `import warnings` and add `warnings.filterwarnings('ignore')` at the top of your notebook (be aware you will not be warned if you use deprecated methods etc. in case you do this).
 
 <a name="H3b"></a>
 ### Toggle code
@@ -157,6 +157,7 @@ Download [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) and copy th
 
 
 ```
+from IPython.display import HTML
 HTML('''<script>
 code_show=true; 
 function code_toggle() {
@@ -169,7 +170,7 @@ function code_toggle() {
 } 
 $( document ).ready(code_toggle);
 </script>
-The raw code for this IPython notebook is by default hidden for easier reading.
+The raw code for this Jupyter notebook is by default hidden for easier reading.
 To toggle on/off the raw code, click <a href="javascript:code_toggle()">here</a>.''')
 ```
 
