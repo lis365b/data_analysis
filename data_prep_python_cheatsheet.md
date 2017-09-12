@@ -193,13 +193,13 @@ Follow the instructions to add your table of contents in a cell. If the table of
 **Info on data types:** 
 
 ```
-data.info()
+df.info()
 ```  
 
 **Summary of missing values:** 
 
 ```
-data.isnull().sum()
+df.isnull().sum()
 ``` 
 
 **Replace missings by 0 for numeric variables (if appropriate):**
