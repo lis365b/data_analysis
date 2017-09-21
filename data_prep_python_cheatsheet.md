@@ -30,7 +30,7 @@ Feedback welcome - elisabeth.reitmayr@gmail.com
      * [Hide warnings](#H3a)
      * [Toggle code](#H3b)
      * [Table of contents](#H3c)
-     * [Change the maximum column width to be displayed](#H3d)
+     * [Change the maximum columns/column width to be displayed](#H3d)
   * [Metadata and data types](#H4)
      * [Metadata](#H4a)
      * [Modify data types](#H4b)
@@ -185,12 +185,19 @@ You can use an extension to display the auto-generated table of contents "inside
 Follow the instructions to add your table of contents in a cell. If the table of contents does not show up, click on the refresh symbol in the "Contents" side menu in your notebook.
 
 <a name="H3d"></a>
-### Change the maximum column width to be displayed
+### Change the maximum columns/column width to be displayed
+
+Column width:
 
 ```
 pd.set_option('max_colwidth',800)
 ```
 
+Number of columns:
+
+```
+pd.set_option("display.max_columns",200)
+```
 <a name="H4"></a>
 ## Metadata and data types
 <a name="H4a"></a>
