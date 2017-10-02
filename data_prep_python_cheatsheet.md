@@ -251,7 +251,7 @@ df.my_ts = pd.to_datetime(df.my_ts)
 **Count unique values of one column:**
 
 ```
-dupes = dupes.groupby('my_category').my_user_id.nunique()
+df.groupby('my_category').my_user_id.nunique()
 ```
 
 **Show duplicate values for one column:**
