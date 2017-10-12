@@ -480,6 +480,15 @@ Specify the values to be inserted - can be done through aritmethic operations on
 df['NEWCOL'] = df.COL1/df.COL2
 ```
 
+If you want to apply a function to another variable of the dataframe, you will have to map it to this variable:
+
+```
+def mins_to_secs(x):
+	x = df.time_spent_minutes/60
+
+df['time_spent_seconds'] = df.time_spent_minutes.map(mins_to_secs)
+```
+
 <a name="H8b"></a>
 ### Bucket variables
 
