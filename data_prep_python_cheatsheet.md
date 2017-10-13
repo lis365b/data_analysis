@@ -75,6 +75,12 @@ len(data) # N rows imported (add for future reference)
 
 Do not forget to define encoding as this might cause issues. If you store the csv file in the same folder as the Notebook, it is sufficient to specify the file name.
 
+If you want dates to be recognized as dates, add this argument:
+
+```
+pd.read_csv('fileName.csv', parse_dates=True)
+```
+
 <a name="H2b"></a>
 ### Connect to a database
 
