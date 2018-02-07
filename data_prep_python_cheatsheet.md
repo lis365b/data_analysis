@@ -15,7 +15,7 @@ Feedback welcome - elisabeth.reitmayr@gmail.com
 
 ## Sources
 
-  *  [Pandas documentation](http://pandas.pydata.org/pandas-docs/stable/)
+  * [Pandas documentation](http://pandas.pydata.org/pandas-docs/stable/)
   * [Scipy Documentation](https://docs.scipy.org/doc/numpy/reference/)
   * [Notebook on data pre-processing (April Chen)](https://github.com/aprilypchen/depy2016/blob/master/DePy_Talk.ipynb)
   * [Awesome Pandas blog](https://chrisalbon.com/) 
@@ -70,7 +70,7 @@ from IPython.display import HTML
 
 ```
 df = pd.read_csv('PATH', encoding = 'utf-8-sig') 
-len(data) # N rows imported (add for future reference)
+len(df) # N rows imported (add for future reference)
 ```
 
 Do not forget to define encoding as this might cause issues. If you store the csv file in the same folder as the Notebook, it is sufficient to specify the file name.
