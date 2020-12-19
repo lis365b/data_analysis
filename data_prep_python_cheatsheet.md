@@ -551,7 +551,6 @@ Adjust the bins by specifying the thresholds for the bins
 
 ```
 df['BOOL'] = (df.COL1=="ABC").astype(int)
-dta.head()
 ```
 In this example, COL1 contains string values. BOOL will be 1 if COL1 contains "ABC".
 
