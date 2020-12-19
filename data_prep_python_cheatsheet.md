@@ -61,7 +61,8 @@ import pandas as pd
 import numpy as np
 import psycopg2 as ps
 from IPython.display import HTML
-%matplotlib inline # show plots inline in Jupyter Notebook
+# show plots inline in Jupyter Notebook (do not comment on lines in which you run magics)
+%matplotlib inline 
 ```
 <a name="H2"></a>
 ## Import data
