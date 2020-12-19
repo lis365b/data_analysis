@@ -494,6 +494,11 @@ def mins_to_secs(x):
 
 df['time_spent_seconds'] = df.time_spent_minutes.map(mins_to_secs)
 ```
+Add a column that is dependent on the values from another column:
+
+```
+df['loggedin'] = np.where(df['logins'] > 0, True, False)
+```
 
 <a name="H8b"></a>
 ### Bucket variables
